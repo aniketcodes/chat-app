@@ -16,12 +16,14 @@ io.on( 'connection', (socket) => {
   console.log( "New web socket connection" )
   socket.emit( 'message', "Welcome" );
   socket.broadcast.emit( 'message', "A new user has joined" );
-  socket.on( "sendMessage", ( message ) => {
+  socket.on( "sendMessage", ( message ,cb) => {
     io.emit( "message", message );
+    cb();
   } );
 
-  socket.on( "sendLocation", ( { latitude, longitude } ) => {
-    socket.broadcast.emit("message",`A user's location lat ${latitude} long ${longitude}`)
+  socket.on( "sendLocation", ( { latitude, longitude },cb ) => {
+    socket.broadcast.emit( "message", `A user's location lat ${ latitude } long ${ longitude }` )
+    cb();
   })
 
   socket.on( "disconnect", () => {
