@@ -12,11 +12,13 @@ const io = socketio( server );
 app.use("/",express.static(path.join(__dirname,"public")))
 
 
-let count = 0;
-
 io.on( 'connection', (socket) => {
   console.log( "New web socket connection" )
   socket.emit( 'message', "Welcome" );
+
+  socket.on( "sendMessage", ( message ) => {
+    io.emit( "message", message );
+  } );
 })
 
 //LISTEN Route
