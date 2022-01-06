@@ -1,9 +1,11 @@
 const dotenv = require( "dotenv" );
-dotemv.config();
+dotenv.config();
 const express = require( 'express' )
 const app = express();
+const path = require( "path" );
 const PORT = process.env.PORT;
 
+app.use("/",express.static(path.join(__dirname,"public")))
 
 //LISTEN Route
 app.listen( PORT, ( err ) => {
