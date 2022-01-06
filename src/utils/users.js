@@ -1,7 +1,7 @@
 const users = []
 
 module.exports = {
-  adduser: ( { id, username, room } ) => {
+  addUser: ( { id, username, room } ) => {
     username = username.trim().toLowerCase()
     room = room.trim().toLowerCase()
 
